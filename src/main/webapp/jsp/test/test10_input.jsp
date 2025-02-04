@@ -34,7 +34,6 @@
 
 
 
-
 </style>
 
 </head>
@@ -249,7 +248,7 @@
 				<% for(Map<String, Object> info : musicList) { %>
 					<tr>
 						<td><%= info.get("id") %></td>
-						<td class="text-primary"><a href="/jsp/test/test10_result.jsp?title=<%= info.get("title") %>"><%= info.get("title") %></a></td>
+						<td class="text-primary"><a href="/jsp/test/test10_result.jsp?id=<%= info.get("id") %>"><%= info.get("title") %></a></td>
 						<td><%= info.get("album") %></td>
 					</tr>
 				<% } %>

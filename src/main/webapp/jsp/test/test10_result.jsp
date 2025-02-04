@@ -177,102 +177,72 @@
 
     musicList.add(musicInfo);
 
-    
-
 String title = request.getParameter("title");
+String get_id = request.getParameter("id");
+
+//int id = Integer.parseInt(get_id);
+
+
 
 %>
-
 
 
 <div class="container">
 
 		<header class="header d-flex">
-
 			<h2 class="logo text-success"><a class="text-success" href="/jsp/test/test10_input.jsp">Melong</a></h2>
-
 			<form action="/jsp/test/test10_result.jsp" method="get" class="ml-5 input-group">
-
 				<input name="title" type="text" placeholder="제목을 입력하세요." class="form-control h-100">
-
 				<button type="submit" class="btn bg-info text-white">검색</button>
-
 			</form>
-
 		</header>
 
 		<div class="menu">
-
 			<ul class="nav">
-
 					<li class="nav-item"><a class="nav-link text-dark" href="#">멜롱차트</a></li>
-
 					<li class="nav-item"><a class="nav-link text-dark" href="#">최신음악</a></li>
-
 					<li class="nav-item"><a class="nav-link text-dark" href="#">장르음악</a></li>
-
 					<li class="nav-item"><a class="nav-link text-dark" href="#">멜롱DJ</a></li>
-
 					<li class="nav-item"><a class="nav-link text-dark" href="#">뮤직어워드</a></li>
-
 			</ul>
-
 		</div>
 
 		
-
 		<h3 class="mt-4">곡 정보</h3>
-
 		<article class="border d-flex border-success p-3">
 
 		<% for(Map<String, Object> info : musicList) { 
-
-			if(info.get("title").equals(title)){
-
+			//if(info.get("id").equals(id)){	
+			//if(info.get("title").equals(title)){
+				//전달되는 값마다 다르게
+				
+			int id = 0;
+			if(get_id != null){
+				id = Integer.parseInt(get_id);
+			}
+			
+			if((id != 0 && info.get("id").equals(id)) || (title != null && title.equals(info.get("title")))){
+			
+			int time = (Integer)info.get("time");
 		%>
-
-	
-
 			<a href="#"><img style="width:180px" src=<%= info.get("thumbnail") %> alt="썸네일"></a>
-
 			<div style="margin-left:20px">
-
 				<h3><%= info.get("title") %></h3>
-
 				<h5 class="text-success"><%= info.get("singer") %></h5>
-
-				<h6 class="text-secondary">앨범 <%= info.get("album") %></h6>
-
-				<h6 class="text-secondary">재생시간 <%= info.get("time") %></h6>
-
-				<h6 class="text-secondary">작곡가 <%= info.get("composer") %></h6>
-
-				<h6 class="text-secondary">작사가 <%= info.get("lyricist") %></h6>
+				<h6 class="text-secondary">앨범 : <%= info.get("album") %></h6>
+				<h6 class="text-secondary">재생시간 : <%= time / 60%> : <%= time % 60 %></h6>
+				<h6 class="text-secondary">작곡가 : <%= info.get("composer") %></h6>
+				<h6 class="text-secondary">작사가 : <%= info.get("lyricist") %></h6>
 
 			</div>
-
-			
-
-			<% } 
-
-			
-
-			
-
-			
-
-			
-
+			<%  
+			} 
 			} %>
-
 		</article>
 
 		
-
 		<h3 class="mt-5">가사</h3>
-
 		<hr>
-
 		<h5 class="text-secondary">가사 정보 없음</h5>
 
 		
@@ -281,17 +251,10 @@ String title = request.getParameter("title");
 
 
 
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 
-	
 
 </body>
 
